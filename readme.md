@@ -1,4 +1,4 @@
-# Projeto CRUD em PHP
+# Projeto CRUD em PHP com MySQL
 
 Este projeto é um sistema CRUD (Create, Read, Update, Delete) simples desenvolvido em PHP.
 
