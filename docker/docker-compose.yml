@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  meu_servidor_php:
+    image: php:7.4-apache
+    ports:
+      - "80:80"
+    volumes:
+      - "../${PWD}:/var/www/html"
+    depends_on:
+      - mysql
+    restart: always
+    command:
+      [
+        "bash",
+        "-c",
+        "apt-get update && apt-get install -y iputils-ping && docker-php-ext-install mysqli && docker-php-ext-enable mysqli && while ! ping -c1 mysql > /dev/null; do sleep 1; done; apache2-foreground",
+      ]
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: databasephp
+      MYSQL_USER: usuario1234
+      MYSQL_PASSWORD: senha1234
+    ports:
+      - "3307:3306"
+    restart: always
